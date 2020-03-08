@@ -10,4 +10,4 @@ echo "SCRIPTPATH is $SCRIPTPATH"
 
 
 # Import scripts from /scripts dir
-source $DIR/scripts/dirs.sh # create all dir structure
+source $SCRIPTPATH/scripts/dirs.sh # create all dir structure
