@@ -3,6 +3,7 @@
 
 # Setting workdir and backup dir
 POOL_NAME=$(zpool list | grep mnt | awk '{print $1;}')
+echo "POOL_NAME is $POOL_NAME"
 
 # Default BackUp dir
 DBKP="/mnt/${POOL_NAME}/BackUP/Jails"
