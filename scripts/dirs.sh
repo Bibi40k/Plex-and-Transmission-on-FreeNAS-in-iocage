@@ -3,17 +3,13 @@
 
 
 # Create dirs, copy dummy vars file and set bkp dir
-DIRS=("$TMP_CUSTOM_BKP_DIR"/{plex-configs,transmission-configs})
+DIRS=("${TMP_CUSTOM_BKP_DIR}"/"${TMP_CUSTOM_JAIL_NAME}"/{plex-config,transmission-config})
 mkdir -p -- "${DIRS[@]}"
-ls -la "${TMP_CUSTOM_BKP_DIR}"
 
-
-exit 1;
 
 ### DIRS ###
-DCONFIG="${HOME}/openvpn-configs"
-DSERVER="${DCONFIG}/server"
-DCLIENTS="${DCONFIG}/clients"
-DKEYS="${DSERVER}/keys"
-DLOGS="${DCONFIG}/logs"
+DBKP="${TMP_CUSTOM_BKP_DIR}/${TMP_CUSTOM_JAIL_NAME}"
+DPLEX="${DCONFIG}/plex-config"
+DTRANSMISSION="${DCONFIG}/transmission-config"
+# DLOGS="${DCONFIG}/logs"
 

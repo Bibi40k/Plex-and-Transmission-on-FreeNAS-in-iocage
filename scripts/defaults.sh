@@ -9,12 +9,7 @@ DEFAULT_GW_IP=$(netstat -rn | grep -E "UGS[^A-Z]" | awk '{print $2;}')
 DEFAULT_LAST_OCTET_OF_IP="77" # no checks for this
 DEFAULT_JAIL_IP="$(awk -F"." '{print $1"."$2"."$3".'${DEFAULT_LAST_OCTET_OF_IP}'"}'<<<${DEFAULT_GW_IP})"
 DEFAULT_RELEASE=$(freebsd-version | sed "s/STABLE/RELEASE/g" | sed "s/-p.*//g")
-
-
-
-# Used for Clients config file
-EXT_IP=$(dig @resolver1.opendns.com ANY myip.opendns.com +short)
-DEFAULT_EXT_PORT="1194"
+DEFAULT_USE_PLEXPASS="no"
 
 
 
@@ -38,20 +33,7 @@ IP_RANGE=$(netstat -rn | grep -E "U[^A-Z]" | grep -v lo0 | awk '{print $1;}' | s
 
 
 
-source ${FVARS} # custom vars we created in '~/openvpn-configs/jail.vars'
-
-
-
-# $CUSTOM_JAIL_NAME
-echo ""
-if [ ! -z $CUSTOM_JAIL_NAME ]; then
-  read -p "We already set Iocage Name as [${CUSTOM_JAIL_NAME}]: " TMP_CUSTOM_JAIL_NAME
-  TMP_CUSTOM_JAIL_NAME=${TMP_CUSTOM_JAIL_NAME:-$CUSTOM_JAIL_NAME}
-else
-  read -p "Iocage name not set, default Name is [${DEFAULT_JAIL_NAME}]: " TMP_CUSTOM_JAIL_NAME
-  TMP_CUSTOM_JAIL_NAME=${TMP_CUSTOM_JAIL_NAME:-$DEFAULT_JAIL_NAME}
-fi
-sed -i "" "s/CUSTOM_JAIL_NAME=.*/CUSTOM_JAIL_NAME=\"${TMP_CUSTOM_JAIL_NAME}\"/" ${FVARS}
+source ${FVARS} # custom vars we created in 'CUSTOM_BKP_DIR/jail.vars'
 
 
 
@@ -88,4 +70,16 @@ else
   TMP_CUSTOM_INTERFACE=${TMP_CUSTOM_INTERFACE:-$DEFAULT_INTERFACE}
 fi
 sed -i "" "s/CUSTOM_INTERFACE=.*/CUSTOM_INTERFACE=\"${TMP_CUSTOM_INTERFACE}\"/" ${FVARS}
+
+
+
+# $CUSTOM_USE_PLEXPASS
+if [ ! -z "$CUSTOM_USE_PLEXPASS" ]; then
+  read -p "We already set Use PlexPASS to [${CUSTOM_USE_PLEXPASS}]: " TMP_CUSTOM_USE_PLEXPASS
+  TMP_CUSTOM_USE_PLEXPASS=${TMP_CUSTOM_USE_PLEXPASS:-$CUSTOM_USE_PLEXPASS}
+else
+  read -p "Use PlexPASS not set, default is [${DEFAULT_USE_PLEXPASS}]: " TMP_CUSTOM_USE_PLEXPASS
+  TMP_CUSTOM_USE_PLEXPASS=${TMP_CUSTOM_USE_PLEXPASS:-$DEFAULT_USE_PLEXPASS}
+fi
+sed -i "" "s/CUSTOM_USE_PLEXPASS=.*/CUSTOM_USE_PLEXPASS=\"${TMP_CUSTOM_USE_PLEXPASS}\"/" ${FVARS}
 

@@ -5,29 +5,33 @@
 # Getting installer dir ( /root/Plex-and-Transmission-on-FreeNAS-in-Iocage )
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "${SCRIPT}")
-POOL_NAME=$(zpool list | grep mnt | awk '{print $1;}')
 
-\cp -n "${SCRIPTPATH}/src/env.vars" "${SCRIPTPATH}/env.vars"
-source "${SCRIPTPATH}/env.vars"
-
-if [ -f "${DBKP}/jail.vars" ]; then
-  source "${DBKP}/jail.vars"
-fi
-
-
-# $CUSTOM_BACKUP_DIR
-echo ""
-if [ ! -z "${CUSTOM_BKP_DIR}" ]; then
-  read -p "We already set BackUp dir as [${CUSTOM_BKP_DIR}]: " TMP_CUSTOM_BKP_DIR
-  TMP_CUSTOM_BKP_DIR=${TMP_CUSTOM_BKP_DIR:-$CUSTOM_BKP_DIR}
-else
-  read -p "BackUp dir not set, default BackUp dir is [${DBKP}]: " TMP_CUSTOM_BKP_DIR
-  TMP_CUSTOM_BKP_DIR=${TMP_CUSTOM_BKP_DIR:-$DBKP}
-fi
-
-\cp -n "${SCRIPTPATH}/src/dummy-jail.vars" "${TMP_CUSTOM_BKP_DIR}/jail.vars"
-sed -i "" "s|CUSTOM_BKP_DIR=.*|CUSTOM_BKP_DIR=\"${TMP_CUSTOM_BKP_DIR}\"|" "${TMP_CUSTOM_BKP_DIR}/jail.vars"
-sed -i "" "s|DBKP=.*|DBKP=\"${TMP_CUSTOM_BKP_DIR}\"|" "${SCRIPTPATH}/env.vars"
 
 # Import scripts from /scripts dir
+source ${SCRIPTPATH}/scripts/env.sh # few vars
 source ${SCRIPTPATH}/scripts/dirs.sh # create all dir structure
+source $SCRIPTPATH/scripts/files.sh # create/copy all files
+source ${SCRIPTPATH}/scripts/defaults.sh # default vars & constants
+source ${FVARS} # custom vars we created in 'CUSTOM_BKP_DIR/jail.vars'
+exit 1;
+# Create jail with Custom vars
+echo ""
+echo "Jail creation in progress..."
+iocage create \
+    -n ${CUSTOM_JAIL_NAME} \
+    ip4_addr="${CUSTOM_INTERFACE}|${CUSTOM_JAIL_IP}/24" \
+    defaultrouter=${DEFAULT_GW_IP} \
+    dhcp=${DHCP} \
+    bpf=${BPF} \
+    vnet=${VNET} \
+    vnet_default_interface=${VNET_DEFAULT_INTERFACE} \
+    boot=${BOOT} \
+    allow_mount=${ALLOW_MOUNT} \
+    allow_mount_devfs=${ALLOW_MOUNT_DEVFS} \
+    allow_raw_sockets=${ALLOW_RAW_SOCKETS} \
+    allow_tun=${ALLOW_TUN} \
+    ip6_saddrsel=${IP6_SADDRSEL} \
+    -r ${DEFAULT_RELEASE} \
+    -p ${FPKG};
+echo ""
+
