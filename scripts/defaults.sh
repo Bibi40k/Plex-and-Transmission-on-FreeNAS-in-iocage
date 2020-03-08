@@ -33,7 +33,7 @@ IP_RANGE=$(netstat -rn | grep -E "U[^A-Z]" | grep -v lo0 | awk '{print $1;}' | s
 
 
 
-source ${FVARS} # custom vars we created in 'CUSTOM_BKP_DIR/jail.vars'
+source "${FVARS}" # custom vars we created in 'CUSTOM_BKP_DIR/jail.vars'
 
 
 
