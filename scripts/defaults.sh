@@ -50,18 +50,6 @@ sed -i "" "s/CUSTOM_JAIL_IP=.*/CUSTOM_JAIL_IP=\"${TMP_CUSTOM_JAIL_IP}\"/" ${FVAR
 
 
 
-# $CUSTOM_EXT_PORT
-if [ ! -z "$CUSTOM_EXT_PORT" ]; then
-  read -p "We already set External PORT as [${CUSTOM_EXT_PORT}]: " TMP_CUSTOM_EXT_PORT
-  TMP_CUSTOM_EXT_PORT=${TMP_CUSTOM_EXT_PORT:-$CUSTOM_EXT_PORT}
-else
-  read -p "External PORT not set, default is [${DEFAULT_EXT_PORT}]: " TMP_CUSTOM_EXT_PORT
-  TMP_CUSTOM_EXT_PORT=${TMP_CUSTOM_EXT_PORT:-$DEFAULT_EXT_PORT}
-fi
-sed -i "" "s/CUSTOM_EXT_PORT=.*/CUSTOM_EXT_PORT=\"${TMP_CUSTOM_EXT_PORT}\"/" ${FVARS}
-
-
-
 # $CUSTOM_INTERFACE
 if [ ! -z "$CUSTOM_INTERFACE" ]; then
   read -p "We already set Interface Name as [${CUSTOM_INTERFACE}]: " TMP_CUSTOM_INTERFACE
