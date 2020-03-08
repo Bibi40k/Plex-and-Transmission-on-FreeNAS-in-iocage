@@ -6,6 +6,22 @@
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "${SCRIPT}")
 
+POOL_NAME=$(zpool list | grep mnt | awk '{print $1;}')
+[ -f "${SCRIPTPATH}/env.vars" ] || DBKP="/mnt/${POOL_NAME}/BackUP/Jails"
+
+# $CUSTOM_BACKUP_DIR
+echo ""
+if [ ! -z $CUSTOM_DBKP ]; then
+  read -p "We already set BackUp dir as [${CUSTOM_DBKP}]: " TMP_CUSTOM_DBKP
+  TMP_CUSTOM_DBKP=${TMP_CUSTOM_DBKP:-$CUSTOM_DBKP}
+else
+  read -p "BackUp dir not set, default BackUp dir is [${DBKP}]: " TMP_CUSTOM_DBKP
+  TMP_CUSTOM_DBKP=${TMP_CUSTOM_DBKP:-$DBKP}
+fi
+
+\cp -n "${SCRIPTPATH}/src/dummy-jail.vars" "${TMP_CUSTOM_DBKP}/jail.vars"
+sed -i "" "s|CUSTOM_BKP_DIR=.*|CUSTOM_BKP_DIR=\"${TMP_CUSTOM_DBKP}\"|" "${TMP_CUSTOM_DBKP}/jail.vars"
+sed -i "" "s|CUSTOM_DBKP=.*|CUSTOM_DBKP=\"${TMP_CUSTOM_DBKP}\"|" "${SCRIPTPATH}/env.vars"
 
 # Import scripts from /scripts dir
 source ${SCRIPTPATH}/scripts/dirs.sh # create all dir structure
