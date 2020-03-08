@@ -3,7 +3,7 @@
 
 
 # Create dirs, copy dummy vars file and set bkp dir
-DIRS=("${TMP_CUSTOM_BKP_DIR}/{plex-configs/,transmission-configs/}")
+DIRS=("${TMP_CUSTOM_BKP_DIR}/plex-configs,transmission-configs")
 mkdir -p -- "${DIRS[@]}"
 ls -la "${TMP_CUSTOM_BKP_DIR}"
 
