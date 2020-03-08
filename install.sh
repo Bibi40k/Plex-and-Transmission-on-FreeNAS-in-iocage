@@ -1,17 +1,13 @@
-  #!/bin/bash
+#!/bin/bash
 # Build Plex & Transmission Iocage Jail under FreeNAS
 
 
 # Getting installer dir ( /root/Plex-and-Transmission-on-FreeNAS-in-Iocage )
-CWD="`pwd`"
-SCRIPT="`which $0`"
-RELDIR="`dirname $SCRIPT`"
-cd "$RELDIR"
-DIR="`pwd`"
-cd "$CWD"
-
+SCRIPT=$(readlink -f "$0")
+SCRIPTPATH=$(dirname "${SCRIPT}")
 echo "SCRIPTPATH is $SCRIPTPATH"
+echo "${SCRIPTPATH}/scripts/dirs.sh"
 
 
 # Import scripts from /scripts dir
-source ${DIR}/scripts/dirs.sh # create all dir structure
+source ${SCRIPTPATH}/scripts/dirs.sh # create all dir structure
