@@ -17,17 +17,17 @@ fi
 
 # $CUSTOM_BACKUP_DIR
 echo ""
-if [ ! -z $CUSTOM_DBKP ]; then
-  read -p "We already set BackUp dir as [${CUSTOM_DBKP}]: " TMP_CUSTOM_DBKP
-  TMP_CUSTOM_DBKP=${TMP_CUSTOM_DBKP:-$CUSTOM_DBKP}
+if [ ! -z $CUSTOM_BKP_DIR ]; then
+  read -p "We already set BackUp dir as [${CUSTOM_BKP_DIR}]: " TMP_CUSTOM_BKP_DIR
+  TMP_CUSTOM_BKP_DIR=${TMP_CUSTOM_BKP_DIR:-$CUSTOM_BKP_DIR}
 else
-  read -p "BackUp dir not set, default BackUp dir is [${DBKP}]: " TMP_CUSTOM_DBKP
-  TMP_CUSTOM_DBKP=${TMP_CUSTOM_DBKP:-$DBKP}
+  read -p "BackUp dir not set, default BackUp dir is [${DBKP}]: " TMP_CUSTOM_BKP_DIR
+  TMP_CUSTOM_BKP_DIR=${TMP_CUSTOM_BKP_DIR:-$DBKP}
 fi
 
-\cp -n "${SCRIPTPATH}/src/dummy-jail.vars" "${TMP_CUSTOM_DBKP}/jail.vars"
-sed -i "" "s|CUSTOM_BKP_DIR=.*|CUSTOM_BKP_DIR=\"${TMP_CUSTOM_DBKP}\"|" "${TMP_CUSTOM_DBKP}/jail.vars"
-sed -i "" "s|DBKP=.*|DBKP=\"${TMP_CUSTOM_DBKP}\"|" "${SCRIPTPATH}/env.vars"
+\cp -n "${SCRIPTPATH}/src/dummy-jail.vars" "${TMP_CUSTOM_BKP_DIR}/jail.vars"
+sed -i "" "s|CUSTOM_BKP_DIR=.*|CUSTOM_BKP_DIR=\"${TMP_CUSTOM_BKP_DIR}\"|" "${TMP_CUSTOM_BKP_DIR}/jail.vars"
+sed -i "" "s|DBKP=.*|DBKP=\"${TMP_CUSTOM_BKP_DIR}\"|" "${SCRIPTPATH}/env.vars"
 
 # Import scripts from /scripts dir
 source ${SCRIPTPATH}/scripts/dirs.sh # create all dir structure
