@@ -5,9 +5,9 @@
 # Getting installer dir ( /root/Plex-and-Transmission-on-FreeNAS-in-Iocage )
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "${SCRIPT}")
-
 POOL_NAME=$(zpool list | grep mnt | awk '{print $1;}')
-DBKP="/mnt/${POOL_NAME}/BackUP/Jails"
+source "${SCRIPTPATH}/env.vars"
+[ -f "${DBKP}/jail.vars" ] source "${DBKP}/jail.vars"
 
 # $CUSTOM_BACKUP_DIR
 echo ""
