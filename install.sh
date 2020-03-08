@@ -20,6 +20,7 @@ else
 fi
 
 \cp -n "${SCRIPTPATH}/src/dummy-jail.vars" "${TMP_CUSTOM_DBKP}/jail.vars"
+\cp -n "${SCRIPTPATH}/src/env.vars" "${SCRIPTPATH}/env.vars"
 sed -i "" "s|CUSTOM_BKP_DIR=.*|CUSTOM_BKP_DIR=\"${TMP_CUSTOM_DBKP}\"|" "${TMP_CUSTOM_DBKP}/jail.vars"
 sed -i "" "s|DBKP=.*|DBKP=\"${TMP_CUSTOM_DBKP}\"|" "${SCRIPTPATH}/env.vars"
 
