@@ -2,12 +2,10 @@
 # This script will create all necessary dirs & store them in vars
 
 
-mkdir -p "${TMP_CUSTOM_BKP_DIR}/plex-configsss"
-ls -la "${TMP_CUSTOM_BKP_DIR}"
-
 # Create dirs, copy dummy vars file and set bkp dir
-DIRS=("${TMP_CUSTOM_BKP_DIR}/plex-configs","${TMP_CUSTOM_BKP_DIR}/transmission-configs")
+DIRS=("${TMP_CUSTOM_BKP_DIR}/{plex-configs,transmission-configs}")
 mkdir -p -- "${DIRS[@]}"
+ls -la "${TMP_CUSTOM_BKP_DIR}"
 
 
 exit 1;
