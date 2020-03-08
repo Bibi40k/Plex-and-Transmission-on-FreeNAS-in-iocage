@@ -7,7 +7,7 @@ SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "${SCRIPT}")
 
 POOL_NAME=$(zpool list | grep mnt | awk '{print $1;}')
-[ -f "${SCRIPTPATH}/env.vars" ] || DBKP="/mnt/${POOL_NAME}/BackUP/Jails"
+DBKP="/mnt/${POOL_NAME}/BackUP/Jails"
 
 # $CUSTOM_BACKUP_DIR
 echo ""
