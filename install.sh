@@ -7,6 +7,7 @@ SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "${SCRIPT}")
 POOL_NAME=$(zpool list | grep mnt | awk '{print $1;}')
 source "${SCRIPTPATH}/env.vars"
+\cp -n "${SCRIPTPATH}/src/env.vars" "${SCRIPTPATH}/env.vars"
 [ -f "${DBKP}/jail.vars" ] source "${DBKP}/jail.vars"
 
 # $CUSTOM_BACKUP_DIR
@@ -20,7 +21,6 @@ else
 fi
 
 \cp -n "${SCRIPTPATH}/src/dummy-jail.vars" "${TMP_CUSTOM_DBKP}/jail.vars"
-\cp -n "${SCRIPTPATH}/src/env.vars" "${SCRIPTPATH}/env.vars"
 sed -i "" "s|CUSTOM_BKP_DIR=.*|CUSTOM_BKP_DIR=\"${TMP_CUSTOM_DBKP}\"|" "${TMP_CUSTOM_DBKP}/jail.vars"
 sed -i "" "s|DBKP=.*|DBKP=\"${TMP_CUSTOM_DBKP}\"|" "${SCRIPTPATH}/env.vars"
 
