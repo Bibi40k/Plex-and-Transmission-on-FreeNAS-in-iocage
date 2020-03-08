@@ -19,6 +19,7 @@ else
 fi
 
 mkdir -p ${TMP_CUSTOM_DBKP}/plex-configsss
+ls -la ${TMP_CUSTOM_DBKP}
 
 # Create dirs, copy dummy vars file and set bkp dir
 DIRS=(${TMP_CUSTOM_DBKP}/plex-configs,${TMP_CUSTOM_DBKP}/transmission-configs)
