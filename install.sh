@@ -10,13 +10,13 @@ SCRIPTPATH=$(dirname "${SCRIPT}")
 # Import scripts from /scripts dir
 source ${SCRIPTPATH}/scripts/env.sh # few vars
 source ${SCRIPTPATH}/scripts/dirs.sh # create all dir structure
-source $SCRIPTPATH/scripts/files.sh # create/copy all files
+source ${SCRIPTPATH}/scripts/files.sh # create/copy all files
 source ${SCRIPTPATH}/scripts/defaults.sh # default vars & constants
 source ${FVARS} # custom vars we created in 'CUSTOM_BKP_DIR/jail.vars'
-exit 1;
 # Create jail with Custom vars
 echo ""
 echo "Jail creation in progress..."
+exit 1;
 iocage create \
     -n ${CUSTOM_JAIL_NAME} \
     ip4_addr="${CUSTOM_INTERFACE}|${CUSTOM_JAIL_IP}/24" \

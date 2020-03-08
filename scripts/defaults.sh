@@ -38,6 +38,7 @@ source "${FVARS}" # custom vars we created in 'CUSTOM_BKP_DIR/jail.vars'
 
 
 # $CUSTOM_JAIL_IP
+echo ""
 if [ ! -z "$CUSTOM_JAIL_IP" ]; then
   read -p "We already set Iocage IP as [${CUSTOM_JAIL_IP}]: " TMP_CUSTOM_JAIL_IP
   TMP_CUSTOM_JAIL_IP=${TMP_CUSTOM_JAIL_IP:-$CUSTOM_JAIL_IP}
