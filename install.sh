@@ -17,7 +17,7 @@ fi
 
 # $CUSTOM_BACKUP_DIR
 echo ""
-if [ ! -z $CUSTOM_BKP_DIR ]; then
+if [ ! -z ${CUSTOM_BKP_DIR} ]; then
   read -p "We already set BackUp dir as [${CUSTOM_BKP_DIR}]: " TMP_CUSTOM_BKP_DIR
   TMP_CUSTOM_BKP_DIR=${TMP_CUSTOM_BKP_DIR:-$CUSTOM_BKP_DIR}
 else
