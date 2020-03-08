@@ -6,10 +6,7 @@
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "${SCRIPT}")
 
-
-# Setup workdir and backup dir
-WORKDIR=../${SCRIPTPATH}
-echo "workdir is "${WORKDIR}
+echo "SCRIPTPATH is $SCRIPTPATH"
 
 
 # Import scripts from /scripts dir
