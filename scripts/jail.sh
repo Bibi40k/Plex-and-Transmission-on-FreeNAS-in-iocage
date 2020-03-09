@@ -28,15 +28,17 @@ MEDIA_GROUP=$(id -g media) # media user group id on FreeNAS (should be 8675309)
 iocage exec ${CUSTOM_JAIL_NAME} "env ASSUME_ALWAYS_YES=YES pkg bootstrap"
 iocage exec ${CUSTOM_JAIL_NAME} "mkdir -p /mnt/DOWNLOADS"
 
+
+
+
 # Users & groups
-cat <<-EOF | xargs -L1 iocage exec "${CUSTOM_JAIL_NAME}"
-  getent group | cut -d':' -f1,3-4 | grep -E 'media|ftp'
-  if [ ! id "media" ]; then
-    pw useradd -n media -w none -u ${MEDIA_GROUP} -G ftp -c 'Media User'
-  fi
-  getent group | cut -d':' -f1,3-4 | grep -E 'media|ftp'
-  id media
-...
+cat <<-EOF | xargs -L1 iocage exec "$CUSTOM_JAIL_NAME" > /dev/null 2>&1
+	getent group | cut -d':' -f1,3-4 | grep -E 'media|ftp'
+    if [ ! id "media" ]; then
+        pw useradd -n media -w none -u ${MEDIA_GROUP} -G ftp -c 'Media User'
+    fi
+    getent group | cut -d':' -f1,3-4 | grep -E 'media|ftp'
+    id media
 EOF
 
 iocage fstab -a ${CUSTOM_JAIL_NAME} "${CUSTOM_DOWNLOAD_DIR}" "/mnt/DOWNLOADS" nullfs rw 0 0
