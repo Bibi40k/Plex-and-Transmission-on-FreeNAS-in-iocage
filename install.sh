@@ -16,3 +16,12 @@ source "${FVARS}" # custom vars we created in 'CUSTOM_BKP_DIR/jail.vars'
 
 source ${SCRIPTPATH}/scripts/jail.sh # plex configuration
 source ${SCRIPTPATH}/scripts/plex.sh # plex configuration
+
+
+
+iocage exec ${CUSTOM_JAIL_NAME} "pkg upgrade -y"
+iocage restart ${CUSTOM_JAIL_NAME}
+
+echo "Installation Complete!"
+echo "Log in and configure your server by browsing to:"
+echo "http://${CUSTOM_JAIL_IP}:32400/web"
