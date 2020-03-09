@@ -12,7 +12,7 @@ source ${SCRIPTPATH}/scripts/env.sh # few vars
 source ${SCRIPTPATH}/scripts/dirs.sh # create all dir structure
 source ${SCRIPTPATH}/scripts/files.sh # create/copy all files
 source ${SCRIPTPATH}/scripts/defaults.sh # default vars & constants
-source ${FVARS} # custom vars we created in 'CUSTOM_BKP_DIR/jail.vars'
+source "${FVARS}" # custom vars we created in 'CUSTOM_BKP_DIR/jail.vars'
 # Create jail with Custom vars
 echo ""
 echo "Jail creation in progress..."
