@@ -13,10 +13,11 @@ source ${SCRIPTPATH}/scripts/dirs.sh # create all dir structure
 source ${SCRIPTPATH}/scripts/files.sh # create/copy all files
 source ${SCRIPTPATH}/scripts/defaults.sh # default vars & constants
 source "${FVARS}" # custom vars we created in 'CUSTOM_BKP_DIR/jail.vars'
+
 # Create jail with Custom vars
 echo ""
 echo "Jail creation in progress..."
-exit 1;
+
 iocage create \
     -n ${CUSTOM_JAIL_NAME} \
     ip4_addr="${CUSTOM_INTERFACE}|${CUSTOM_JAIL_IP}/24" \
@@ -35,3 +36,4 @@ iocage create \
     -p ${FPKG};
 echo ""
 
+iocage fstab -a ${CUSTOM_JAIL_NAME} "${CUSTOM_DOWNLOAD_DIR}" "/mnt/DOWNLOADS" nullfs rw 0 0
