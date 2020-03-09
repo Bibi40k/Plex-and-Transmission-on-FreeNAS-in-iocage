@@ -39,7 +39,8 @@ else
 fi
 
 
-
+DBKP="${TMP_CUSTOM_BKP_DIR}/${TMP_CUSTOM_JAIL_NAME}"
+mkdir -p "${DBKP}"
 FVARS="${TMP_CUSTOM_BKP_DIR}/${TMP_CUSTOM_JAIL_NAME}/jail.vars"
 
 sed -i "" "s|CUSTOM_JAIL_NAME=.*|CUSTOM_JAIL_NAME=\"${TMP_CUSTOM_JAIL_NAME}\"|" "${FVARS}"
