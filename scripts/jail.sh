@@ -36,6 +36,7 @@ cat <<-EOF | xargs -L1 iocage exec "${CUSTOM_JAIL_NAME}"
   fi
   getent group | cut -d':' -f1,3-4 | grep -E 'media|ftp'
   id media
+...
 EOF
 
 iocage fstab -a ${CUSTOM_JAIL_NAME} "${CUSTOM_DOWNLOAD_DIR}" "/mnt/DOWNLOADS" nullfs rw 0 0
