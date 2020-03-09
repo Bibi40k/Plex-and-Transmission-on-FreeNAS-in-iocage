@@ -72,5 +72,15 @@ else
   read -p "Use PlexPASS not set, default is [${DEFAULT_USE_PLEXPASS}]: " TMP_CUSTOM_USE_PLEXPASS
   TMP_CUSTOM_USE_PLEXPASS=${TMP_CUSTOM_USE_PLEXPASS:-$DEFAULT_USE_PLEXPASS}
 fi
-sed -i "" "s/CUSTOM_USE_PLEXPASS=.*/CUSTOM_USE_PLEXPASS=\"${TMP_CUSTOM_USE_PLEXPASS}\"/" ${FVARS}
+sed -i "" "s|CUSTOM_USE_PLEXPASS=.*|CUSTOM_USE_PLEXPASS=\"${TMP_CUSTOM_USE_PLEXPASS}\"|" ${FVARS}
+
+
+FPKG="${TMP_CUSTOM_BKP_DIR}/${TMP_CUSTOM_JAIL_NAME}/pkg.json"
+
+\cp -n "${SCRIPTPATH}/src/dummy-jail.vars" "${FVARS}"
+if [ "${TMP_CUSTOM_USE_PLEXPASS}" == "yes" ]; then
+  \cp -r "${SCRIPTPATH}/src/jail/pkg-plexpass.json" "${FPKG}"
+else
+  \cp -r "${SCRIPTPATH}/src/jail/pkg.json" "${FPKG}"
+fi
 

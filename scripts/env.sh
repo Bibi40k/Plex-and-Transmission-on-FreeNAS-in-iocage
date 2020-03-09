@@ -40,34 +40,10 @@ fi
 
 
 
-# $CUSTOM_USE_PLEXPASS
-echo ""
-if [ ! -z $CUSTOM_USE_PLEXPASS ]; then
-  read -p "We already set use PlexPass option as [${CUSTOM_USE_PLEXPASS}]: " TMP_CUSTOM_USE_PLEXPASS
-  TMP_CUSTOM_USE_PLEXPASS=${TMP_CUSTOM_USE_PLEXPASS:-$CUSTOM_USE_PLEXPASS}
-else
-  DEF_USE_PLEXPASS="no"
-  read -p "Use PlexPass not set, default option is [yes|no, def:${DEF_USE_PLEXPASS}]: " TMP_CUSTOM_USE_PLEXPASS
-  TMP_CUSTOM_USE_PLEXPASS=${TMP_CUSTOM_USE_PLEXPASS:-$DEF_USE_PLEXPASS}
-fi
-
-
-
 FVARS="${TMP_CUSTOM_BKP_DIR}/${TMP_CUSTOM_JAIL_NAME}/jail.vars"
-FPKG="${TMP_CUSTOM_BKP_DIR}/${TMP_CUSTOM_JAIL_NAME}/pkg.json"
-
-\cp -n "${SCRIPTPATH}/src/dummy-jail.vars" "${FVARS}"
-if [ "${TMP_CUSTOM_USE_PLEXPASS}" == "yes" ]; then
-  \cp -r "${SCRIPTPATH}/src/jail/pkg-plexpass.json" "${FPKG}"
-else
-  \cp -r "${SCRIPTPATH}/src/jail/pkg.json" "${FPKG}"
-fi
-
-
 
 sed -i "" "s|CUSTOM_JAIL_NAME=.*|CUSTOM_JAIL_NAME=\"${TMP_CUSTOM_JAIL_NAME}\"|" "${FVARS}"
 sed -i "" "s|CUSTOM_JAIL_NAME=.*|CUSTOM_JAIL_NAME=\"${TMP_CUSTOM_JAIL_NAME}\"|" "${SCRIPTPATH}/jail.vars"
-sed -i "" "s|CUSTOM_USE_PLEXPASS=.*|CUSTOM_USE_PLEXPASS=\"${TMP_CUSTOM_USE_PLEXPASS}\"|" "${FVARS}"
-sed -i "" "s|CUSTOM_USE_PLEXPASS=.*|CUSTOM_USE_PLEXPASS=\"${TMP_CUSTOM_USE_PLEXPASS}\"|" "${SCRIPTPATH}/jail.vars"
 sed -i "" "s|CUSTOM_BKP_DIR=.*|CUSTOM_BKP_DIR=\"${TMP_CUSTOM_BKP_DIR}\"|" "${FVARS}"
 sed -i "" "s|CUSTOM_BKP_DIR=.*|CUSTOM_BKP_DIR=\"${TMP_CUSTOM_BKP_DIR}\"|" "${SCRIPTPATH}/jail.vars"
+
