@@ -32,13 +32,20 @@ iocage exec ${CUSTOM_JAIL_NAME} "mkdir -p /mnt/DOWNLOADS"
 
 
 # Users & groups ( > /dev/null 2>&1 silents all messages )
-cat <<-EOF | xargs -L1 iocage exec "$CUSTOM_JAIL_NAME"
-	getent group | cut -d':' -f1,3-4 | grep -E 'media|ftp'
-    if [ ! id "media" ]; then
+iocage exec "${CUSTOM_JAIL_NAME}" " \
+    getent group | cut -d':' -f1,3-4 | grep -E 'media|ftp'; \ 
+    if [ ! id media ]; then
         pw useradd -n media -w none -u ${MEDIA_GROUP} -G ftp -c 'Media User'
-    fi
-    getent group | cut -d':' -f1,3-4 | grep -E 'media|ftp'
-    id media
-EOF
+    fi; \
+    getent group | cut -d':' -f1,3-4 | grep -E 'media|ftp'; \
+    id media"
+# cat <<-EOF | xargs -L1 iocage exec "$CUSTOM_JAIL_NAME"
+# 	getent group | cut -d':' -f1,3-4 | grep -E 'media|ftp'
+#     if [ ! id "media" ]; then
+#         pw useradd -n media -w none -u ${MEDIA_GROUP} -G ftp -c 'Media User'
+#     fi
+#     getent group | cut -d':' -f1,3-4 | grep -E 'media|ftp'
+#     id media
+# EOF
 
 iocage fstab -a ${CUSTOM_JAIL_NAME} "${CUSTOM_DOWNLOAD_DIR}" "/mnt/DOWNLOADS" nullfs rw 0 0
