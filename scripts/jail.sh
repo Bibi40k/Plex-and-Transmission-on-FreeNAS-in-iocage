@@ -33,7 +33,7 @@ iocage exec ${CUSTOM_JAIL_NAME} "mkdir -p /mnt/DOWNLOADS"
 
 # Users & groups
 echo ""
-iocage exec "${CUSTOM_JAIL_NAME}" /bin/sh -c "if ! id -u media; then pw useradd -n media -w none -u ${MEDIA_GROUP} -G ftp -c 'Media User'; fi"
+iocage exec "${CUSTOM_JAIL_NAME}" /bin/sh -c "if ! id -u media >/dev/null 2>&1; then pw useradd -n media -w none -u ${MEDIA_GROUP} -G ftp -c 'Media User'; fi"
 echo ""
 iocage fstab -a ${CUSTOM_JAIL_NAME} "${CUSTOM_DOWNLOAD_DIR}" "/mnt/DOWNLOADS" nullfs rw 0 0
 
