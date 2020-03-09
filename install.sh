@@ -33,7 +33,7 @@ iocage create \
     allow_tun=${ALLOW_TUN} \
     ip6_saddrsel=${IP6_SADDRSEL} \
     -r ${DEFAULT_RELEASE} \
-    -p ${FPKG};
+    -p "${FPKG}";
 echo ""
 
 iocage fstab -a ${CUSTOM_JAIL_NAME} "${CUSTOM_DOWNLOAD_DIR}" "/mnt/DOWNLOADS" nullfs rw 0 0
