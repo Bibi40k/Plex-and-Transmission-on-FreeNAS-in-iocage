@@ -2,9 +2,9 @@
 
 
 iocage exec ${CUSTOM_JAIL_NAME} "mkdir -p /mnt/plexdata /mnt/plex-config"
+iocage exec ${CUSTOM_JAIL_NAME} "chown -R media:ftp /mnt/plexdata /mnt/plex-config"
 iocage fstab -a ${CUSTOM_JAIL_NAME} "${DPLEXDATA}" "/mnt/plexdata" nullfs rw 0 0
 iocage fstab -a ${CUSTOM_JAIL_NAME} "${DPLEXCONFIG}" "/mnt/plex-config" nullfs rw 0 0
-iocage fstab -a ${CUSTOM_JAIL_NAME} "chown -R media:ftp /mnt/plexdata /mnt/plex-config"
 
 if [ $CUSTOM_USE_PLEXPASS == "yes" ]; then
   iocage exec ${CUSTOM_JAIL_NAME} "sysrc plexmediaserver_plexpass_enable='YES'"
@@ -16,7 +16,7 @@ else
   iocage exec ${CUSTOM_JAIL_NAME} "sysrc plexmediaserver_support_path='/mnt/plex-config'"
   iocage exec ${CUSTOM_JAIL_NAME} "sysrc plexmediaserver_user='media'"
   iocage exec ${CUSTOM_JAIL_NAME} "sysrc plexmediaserver_group='ftp'"
-  sed -i '' "s|-plexpass||" "${DPLEXCONFIG}"/update_packages
+  sed -i "" "s|-plexpass||" "${DPLEXCONFIG}/update_packages"
 fi
 
 iocage exec ${CUSTOM_JAIL_NAME} "crontab /mnt/plex-config/update_packages"

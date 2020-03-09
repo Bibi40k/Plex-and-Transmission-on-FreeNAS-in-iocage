@@ -30,7 +30,7 @@ JAIL_ROOT="/mnt/${POOL_NAME}/iocage/jails/${CUSTOM_JAIL_NAME}/root"
 iocage exec ${CUSTOM_JAIL_NAME} "env ASSUME_ALWAYS_YES=YES pkg bootstrap"
 mkdir -p "${JAIL_ROOT}/mnt/DOWNLOADS"
 mkdir -p "${JAIL_ROOT}/usr/local/etc/pkg/repos"
-\cp -n "${JAIL_ROOT}/etc/pkg/FreeBSD.conf ${JAIL_ROOT}/usr/local/etc/pkg/repos/"
+\cp -n "${JAIL_ROOT}/etc/pkg/FreeBSD.conf" "${JAIL_ROOT}/usr/local/etc/pkg/repos/"
 sed -i "" "s|quarterly|latest|" "${JAIL_ROOT}/usr/local/etc/pkg/repos/FreeBSD.conf"
 
 # iocage exec ${CUSTOM_JAIL_NAME} "mkdir -p /mnt/DOWNLOADS"
