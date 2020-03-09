@@ -23,7 +23,7 @@ iocage create \
     -p "${FPKG}";
 echo ""
 
-MEDIA_GROUP=$(id -G media) # should be 8675309
+MEDIA_GROUP=$(id -g media) # media user group id on FreeNAS (should be 8675309)
 
 iocage exec "${CUSTOM_JAIL_NAME}" env ASSUME_ALWAYS_YES=YES pkg bootstrap
 iocage exec "${CUSTOM_JAIL_NAME}" mkdir -p /mnt/DOWNLOADS
