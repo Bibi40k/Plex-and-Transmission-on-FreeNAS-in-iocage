@@ -38,9 +38,10 @@ else
   TMP_CUSTOM_JAIL_NAME=${TMP_CUSTOM_JAIL_NAME:-$DEF_JNAME}
 fi
 
+# Now, that we have all we need we can create Bkp dir and copy 'dummy-jail.vars'
 DBKP="${TMP_CUSTOM_BKP_DIR}/${TMP_CUSTOM_JAIL_NAME}"
 mkdir -p "${DBKP}"
-exit 1;
+\cp -n "${SCRIPTPATH}/src/dummy-jail.vars" "${DBKP}/jail.vars"
 FVARS="${DBKP}/jail.vars"
 
 sed -i "" "s|CUSTOM_JAIL_NAME=.*|CUSTOM_JAIL_NAME=\"${TMP_CUSTOM_JAIL_NAME}\"|" "${FVARS}"
