@@ -16,6 +16,7 @@ source "${FVARS}" # custom vars we created in 'CUSTOM_BKP_DIR/jail.vars'
 
 source ${SCRIPTPATH}/scripts/jail.sh # plex configuration
 source ${SCRIPTPATH}/scripts/plex.sh # plex configuration
+source ${SCRIPTPATH}/scripts/crontab.sh # adding cron job
 
 
 
