@@ -57,9 +57,10 @@ FVARS="${TMP_CUSTOM_BKP_DIR}/${TMP_CUSTOM_JAIL_NAME}/jail.vars"
 FPKG="${TMP_CUSTOM_BKP_DIR}/${TMP_CUSTOM_JAIL_NAME}/pkg.json"
 
 \cp -n "${SCRIPTPATH}/src/dummy-jail.vars" "${FVARS}"
-\cp -n "${SCRIPTPATH}/src/jail/pkg.json" "${FPKG}"
 if [ "${TMP_CUSTOM_USE_PLEXPASS}" == "yes" ]; then
-  sed -i "" "s|plexmediaserver|plexmediaserver-plexpass|" "${FPKG}"
+  \cp -r "${SCRIPTPATH}/src/jail/pkg-plexpass.json" "${FPKG}"
+else
+  \cp -r "${SCRIPTPATH}/src/jail/pkg.json" "${FPKG}"
 fi
 
 
