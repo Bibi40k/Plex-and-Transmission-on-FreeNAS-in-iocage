@@ -26,7 +26,7 @@ fi
 echo ""
 iocage exec ${CUSTOM_JAIL_NAME} wget https://github.com/ukdtom/WebTools.bundle/releases/download/3.0.0/WebTools.bundle.zip -P "${DPLEXDATA}"/Plex\ Media\ Server/Plug-ins
 iocage exec ${CUSTOM_JAIL_NAME} unzip "${DPLEXDATA}"/Plex\ Media\ Server/Plug-ins/WebTools.bundle.zip
-iocage exec ${CUSTOM_JAIL_NAME} rm "${DPLEXDATA}"/Plex\ Media\ Server/Plug-ins/WebTools.bundle.zip
+# iocage exec ${CUSTOM_JAIL_NAME} rm "${DPLEXDATA}"/Plex\ Media\ Server/Plug-ins/WebTools.bundle.zip
 iocage exec ${CUSTOM_JAIL_NAME} chown -R media:ftp "${DPLEXDATA}"/Plex\ Media\ Server/Plug-ins/WebTools.bundle
 # iocage exec ${CUSTOM_JAIL_NAME} "service plexmediaserver_plexpass restart"
 # iocage exec ${CUSTOM_JAIL_NAME} "service plexmediaserver restart"
