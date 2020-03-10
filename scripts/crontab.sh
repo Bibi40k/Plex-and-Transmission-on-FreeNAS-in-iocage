@@ -15,4 +15,5 @@ while read LINE || [[ -n "$LINE" ]]; do
     crontab -l | grep "$LINE" || (crontab -l 2>/dev/null; echo "$LINE") | crontab -
 done < mycron
 
+echo "mycron is " mycron
 rm mycron
