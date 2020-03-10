@@ -3,7 +3,7 @@
 
 iocage exec ${CUSTOM_JAIL_NAME} "mkdir -p /mnt/plexdata"
 iocage exec ${CUSTOM_JAIL_NAME} "chown -R media:ftp /mnt/plexdata"
-iocage fstab -a ${CUSTOM_JAIL_NAME} \""${DPLEXDATA}"\" "/mnt/plexdata" nullfs rw 0 0
+iocage fstab -a ${CUSTOM_JAIL_NAME} \"${DPLEXDATA}\" "/mnt/plexdata" nullfs rw 0 0
 
 
 if [ $CUSTOM_USE_PLEXPASS == "yes" ]; then
@@ -22,10 +22,10 @@ fi
 
 
 echo ""
+IN_DPLUGINS="/mnt/plexdata/Plex Media Server/Plug-ins" # accessible from inside Jail
+OUT_DPLUGINS="${DPLEXDATA}/Plex Media Server/Plug-ins" # accessible from FreeNAS (outside Jail)
 if [ ! -d "${OUT_DPLUGINS}"/WebTools.bundle ]; then
   # Install WebTools.bundle
-  IN_DPLUGINS="/mnt/plexdata/Plex Media Server/Plug-ins" # accessible from inside Jail
-  OUT_DPLUGINS="${DPLEXDATA}/Plex Media Server/Plug-ins" # accessible from FreeNAS (outside Jail)
   WebTools_link="https://github.com/ukdtom/WebTools.bundle/releases/download/3.0.0/WebTools.bundle.zip"
 
   wget ${WebTools_link} -P "${OUT_DPLUGINS}"
