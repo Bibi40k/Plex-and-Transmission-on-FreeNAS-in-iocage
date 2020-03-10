@@ -3,7 +3,7 @@
 
 iocage exec ${CUSTOM_JAIL_NAME} "mkdir -p /mnt/plexdata"
 iocage exec ${CUSTOM_JAIL_NAME} "chown -R media:ftp /mnt/plexdata"
-iocage fstab -a ${CUSTOM_JAIL_NAME} "\"${DPLEXDATA}\"" "/mnt/plexdata" nullfs rw 0 0
+iocage fstab -a ${CUSTOM_JAIL_NAME} '"${DPLEXDATA}" /mnt/plexdata nullfs rw 0 0'
 
 
 if [ $CUSTOM_USE_PLEXPASS == "yes" ]; then
