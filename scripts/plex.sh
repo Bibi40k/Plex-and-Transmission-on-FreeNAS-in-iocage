@@ -21,24 +21,18 @@ else
 fi
 
 
-IN_DPLUGINS="/mnt/plexdata/Plex\ Media\ Server/Plug-ins" # accessible from inside Jail
-OUT_DPLUGINS="${DPLEXDATA}/Plex\ Media\ Server/Plug-ins" # accessible from FreeNAS (outside Jail)
-# Install WebTools.bundle
+IN_DPLUGINS="/mnt/plexdata/Plex Media Server/Plug-ins" # accessible from inside Jail
+OUT_DPLUGINS="${DPLEXDATA}/Plex Media Server/Plug-ins" # accessible from FreeNAS (outside Jail)
 echo ""
 if [ ! -d "${OUT_DPLUGINS}"/WebTools.bundle ]; then
+  # Install WebTools.bundle
   WebTools_link="https://github.com/ukdtom/WebTools.bundle/releases/download/3.0.0/WebTools.bundle.zip"
-  
+
   wget ${WebTools_link} -P "${OUT_DPLUGINS}"
   unzip "${OUT_DPLUGINS}"/WebTools.bundle.zip -d "${OUT_DPLUGINS}"
   rm "${OUT_DPLUGINS}"/WebTools.bundle.zip
   chown -R media:ftp "${OUT_DPLUGINS}"/WebTools.bundle
 fi
-# iocage exec ${CUSTOM_JAIL_NAME} "wget https://github.com/ukdtom/WebTools.bundle/releases/download/3.0.0/WebTools.bundle.zip -P ${IN_DPLUGINS}"
-# iocage exec ${CUSTOM_JAIL_NAME} "unzip ${IN_DPLUGINS}/WebTools.bundle.zip"
-# iocage exec ${CUSTOM_JAIL_NAME} "rm ${IN_DPLUGINS}/WebTools.bundle.zip"
-# iocage exec ${CUSTOM_JAIL_NAME} "chown -R media:ftp ${IN_DPLUGINS}/WebTools.bundle"
-# iocage exec ${CUSTOM_JAIL_NAME} "service plexmediaserver_plexpass restart"
-# iocage exec ${CUSTOM_JAIL_NAME} "service plexmediaserver restart"
 
 
 
