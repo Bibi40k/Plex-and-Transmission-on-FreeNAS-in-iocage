@@ -24,9 +24,52 @@ fi
 
 # Install WebTools.bundle
 echo ""
-iocage exec ${CUSTOM_JAIL_NAME} "wget https://github.com/ukdtom/WebTools.bundle/releases/download/3.0.0/WebTools.bundle.zip -P ${DPLEXDATA}/Plex\ Media\ Server/Plug-ins"
-iocage exec ${CUSTOM_JAIL_NAME} "unzip ${DPLEXDATA}/Plex\ Media\ Server/Plug-ins/WebTools.bundle.zip"
-iocage exec ${CUSTOM_JAIL_NAME} "rm ${DPLEXDATA}/Plex\ Media\ Server/Plug-ins/WebTools.bundle.zip"
-iocage exec ${CUSTOM_JAIL_NAME} "chown -R media:ftp ${DPLEXDATA}/Plex\ Media\ Server/Plug-ins/WebTools.bundle"
+iocage exec ${CUSTOM_JAIL_NAME} wget https://github.com/ukdtom/WebTools.bundle/releases/download/3.0.0/WebTools.bundle.zip -P "${DPLEXDATA}"/Plex\ Media\ Server/Plug-ins
+iocage exec ${CUSTOM_JAIL_NAME} unzip "${DPLEXDATA}"/Plex\ Media\ Server/Plug-ins/WebTools.bundle.zip
+iocage exec ${CUSTOM_JAIL_NAME} rm "${DPLEXDATA}"/Plex\ Media\ Server/Plug-ins/WebTools.bundle.zip
+iocage exec ${CUSTOM_JAIL_NAME} chown -R media:ftp "${DPLEXDATA}"/Plex\ Media\ Server/Plug-ins/WebTools.bundle
+# iocage exec ${CUSTOM_JAIL_NAME} "service plexmediaserver_plexpass restart"
 # iocage exec ${CUSTOM_JAIL_NAME} "service plexmediaserver restart"
+
+
+
+# @@@ INTEL GPU OFFLOAD NOTES @@@
+
+# If you have a supported Intel GPU, you can leverage hardware
+# accelerated encoding/decoding in Plex Media Server on FreeBSD 12.0+.
+
+# The requirements are as follows:
+
+# * Install multimedia/drm-kmod: e.g., pkg install drm-fbsd12.0-kmod
+
+# * Enable loading of kernel module on boot: sysrc kld_list+="i915kms"
+# ** If Plex will run in a jail, you must load the module outside the jail!
+
+# * Load the kernel module now (although reboot is advised): kldload i915kms
+
+# * Add plex user to the video group: pw groupmod -n video -m plex
+
+# * For jails, make a devfs ruleset to expose /dev/dri/* devices.
+
+# e.g., /dev/devfs.rules on the host:
+
+# [plex_drm=10]
+# add include $devfsrules_hide_all
+# add include $devfsrules_unhide_basic
+# add include $devfsrules_unhide_login
+# add include $devfsrules_jail
+# add path 'dri*' unhide
+# add path 'dri/*' unhide
+# add path 'drm*' unhide
+# add path 'drm/*' unhide
+
+# * Enable the devfs ruleset for your jail. e.g., devfs_ruleset=10 in your
+# /etc/jail.conf or for iocage, iocage set devfs_ruleset="10"
+
+# Please refer to documentation for all other FreeBSD jail management
+# utilities.
+
+# * Make sure hardware transcoding is enabled in the server settings
+
+# @@@ INTEL GPU OFFLOAD NOTES @@@
 

@@ -14,7 +14,7 @@ source ${SCRIPTPATH}/scripts/files.sh # create/copy all files
 source ${SCRIPTPATH}/scripts/defaults.sh # default vars & constants
 source "${FVARS}" # custom vars we created in 'CUSTOM_BKP_DIR/jail.vars'
 
-source ${SCRIPTPATH}/scripts/jail.sh # plex configuration
+source ${SCRIPTPATH}/scripts/jail.sh # install Jail
 source ${SCRIPTPATH}/scripts/plex.sh # plex configuration
 source ${SCRIPTPATH}/scripts/crontab.sh # adding cron job
 

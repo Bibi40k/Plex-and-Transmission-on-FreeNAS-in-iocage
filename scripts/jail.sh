@@ -17,6 +17,7 @@ iocage create \
     boot=${BOOT} \
     allow_mount=${ALLOW_MOUNT} \
     allow_mount_devfs=${ALLOW_MOUNT_DEVFS} \
+    devfs_ruleset=${DEVFS_RULESET} \
     allow_raw_sockets=${ALLOW_RAW_SOCKETS} \
     allow_tun=${ALLOW_TUN} \
     ip6_saddrsel=${IP6_SADDRSEL} \
