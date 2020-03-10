@@ -23,10 +23,11 @@ fi
 
 IN_DPLUGINS="/mnt/plexdata/Plex\ Media\ Server/Plug-ins" # accessible from inside Jail
 OUT_DPLUGINS="${DPLEXDATA}/Plex\ Media\ Server/Plug-ins" # accessible from FreeNAS (outside Jail)
-WebTools_link="https://github.com/ukdtom/WebTools.bundle/releases/download/3.0.0/WebTools.bundle.zip"
 # Install WebTools.bundle
 echo ""
-if [ -d "${OUT_DPLUGINS}"/WebTools.bundle ]; then
+if [ ! -d "${OUT_DPLUGINS}"/WebTools.bundle ]; then
+  WebTools_link="https://github.com/ukdtom/WebTools.bundle/releases/download/3.0.0/WebTools.bundle.zip"
+  
   wget ${WebTools_link} -P "${OUT_DPLUGINS}"
   unzip "${OUT_DPLUGINS}"/WebTools.bundle.zip -d "${OUT_DPLUGINS}"
   rm "${OUT_DPLUGINS}"/WebTools.bundle.zip
