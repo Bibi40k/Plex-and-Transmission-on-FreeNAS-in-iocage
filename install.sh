@@ -1,5 +1,39 @@
 #!/bin/bash
-# Build Plex & Transmission Iocage Jail under FreeNAS
+
+#####################################################################################
+# Title: Plex & Transmission iocage jail under FreeNAS                              #
+# Author: Bibi40k                                                                   #
+# Repository: https://github.com/Bibi40k/Plex-and-Transmission-on-FreeNAS-in-iocage #
+#####################################################################################
+
+# First of all, we clear the screen
+clear
+
+
+# Getting installer dir ( /root/OpenVPN-on-FreeNAS-in-iocage )
+CWD="`pwd`"
+SCRIPT="`which $0`"
+RELDIR="`dirname $SCRIPT`"
+cd "$RELDIR"
+DIR="`pwd`"
+cd "$CWD"
+
+
+source $DIR/scripts/colors.sh # messages' colors
+source $DIR/scripts/check_user.sh # checks minimum requirements
+
+CheckUser # user must be root
+
+# Update script to the latest version
+echo
+echo -e "${INFO} Checking for script updates..."
+echo
+cd ${DIR}
+git pull
+
+
+exit
+
 
 
 # Getting installer dir ( /root/Plex-and-Transmission-on-FreeNAS-in-Iocage )
