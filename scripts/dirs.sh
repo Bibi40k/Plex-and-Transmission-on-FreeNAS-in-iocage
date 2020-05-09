@@ -3,6 +3,23 @@
 
 
 
+
+# Create dirs, copy dummy vars file and set bkp dir
+# DIRS=("${TMP_CUSTOM_BKP_DIR}"/"${TMP_CUSTOM_JAIL_NAME}"/{plexdata,transmission-config})
+# mkdir -p -- "${DIRS[@]}"
+
+
+### DIRS ###
+# DBKP="${TMP_CUSTOM_BKP_DIR}/${TMP_CUSTOM_JAIL_NAME}"
+# DPLEXDATA="${DBKP}/plexdata"
+# DTRANSMISSION="${DBKP}/transmission-config"
+# DDOWNLOAD="/mnt/${POOL_NAME}/FTP"
+# DLOGS="${DCONFIG}/logs"
+
+
+
+
+
 ### DIRS ###
 DCONFIG="${DIR}/mediabox-configs"   # Custom configs dir
 DBACKUP="${DIR}/backup"             # Custom backup dir

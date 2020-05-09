@@ -19,8 +19,8 @@ DIR="`pwd`"
 cd "$CWD"
 
 
-source $DIR/scripts/colors.sh # messages' colors
-source $DIR/scripts/check_user.sh # checks minimum requirements
+source $DIR/scripts/_static/colors.sh # messages' colors
+source $DIR/scripts/_static/check_user.sh # checks minimum requirements
 
 CheckUser # user must be root
 
@@ -33,11 +33,11 @@ git pull
 
 
 # Import scripts from /scripts dir
-source $DIR/scripts/autodiscover.sh # autodiscovers few vars we need later
+source $DIR/scripts/_static/autodiscover.sh # autodiscovers few vars we need later
 source $DIR/scripts/dirs.sh # create all dir structure
 source $DIR/scripts/files.sh # create/copy all files
 source $FVARS # custom vars in '${DCONFIG}/jail-install.cfg'
-source $DIR/scripts/check_os.sh # checks minimum requirements
+source $DIR/scripts/_static/check_os.sh # checks minimum requirements
 
 # Loading fixes for specific versions; updated as they appear
 echo -e "${INFO} Getting fixes for ${COLOR_BLUE}FreeNAS ${OS_VERSION}${COLOR_N}... "

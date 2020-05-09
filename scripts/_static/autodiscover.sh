@@ -1,6 +1,8 @@
 #!/bin/bash
 # Autodiscover few variables for further use
 
+
+
 AUTO_USER=$(who am i | awk '{print $1}')
 AUTO_GW_IP=$(netstat -rn | grep -E "UGS[^A-Z]" | awk '{print $2;}')
 SUGGESTED_LAST_OCTET_OF_IP="67" # no checks for this
