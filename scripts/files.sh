@@ -1,12 +1,11 @@
 #!/bin/bash
 # This script will create/copy all necessary files
 
+
+
 ### FILES ###
-FVARS="${DCONFIG}/ovpn-install.cfg" # My custom vars file
-FLOG="${DCONFIG}/ovpn-install.log" # Log file
-
-
-
+FVARS="${DCONFIG}/mediabox-install.cfg" # My custom vars file
+FLOG="${DCONFIG}/mediabox-install.log" # Log file
 
 
 
@@ -18,8 +17,8 @@ function CheckConfigFile {
     if [[ ! -f "${FVARS}" ]] ; then
         echo -e "${WARNING} no config file found"
         
-        echo -ne "${PROGRESS} copy 'sample-ovpn-install.cfg' to ${FVARS}... "
-        if \cp -n "$DIR/src/sample-ovpn-install.cfg" "${FVARS}"; then
+        echo -ne "${PROGRESS} copy 'sample-mediabox-install.cfg' to ${FVARS}... "
+        if \cp -n "$DIR/src/sample-mediabox-install.cfg" "${FVARS}"; then
             echo -e "${OK}"
         else
             echo -e "${FAIL}"
