@@ -37,7 +37,6 @@ source $DIR/scripts/autodiscover.sh # autodiscovers few vars we need later
 source $DIR/scripts/dirs.sh # create all dir structure
 source $DIR/scripts/files.sh # create/copy all files
 source $FVARS # custom vars in '${DCONFIG}/jail-install.cfg'
-source $DIR/scripts/update_config.sh # update 'mediabox-install.cfg' with patch so we keep customizations
 source $DIR/scripts/check_os.sh # checks minimum requirements
 
 # Loading fixes for specific versions; updated as they appear
@@ -57,19 +56,3 @@ else
 	StartUpScreen
 fi
 
-
-
-
-
-# source ${SCRIPTPATH}/scripts/jail.sh # install Jail
-# source ${SCRIPTPATH}/scripts/plex.sh # plex configuration
-# source ${SCRIPTPATH}/scripts/crontab.sh # adding cron job
-
-
-
-# iocage exec ${CUSTOM_JAIL_NAME} "pkg upgrade -y"
-# iocage restart ${CUSTOM_JAIL_NAME}
-
-# echo "Installation Complete!"
-# echo "Log in and configure your server by browsing to:"
-# echo "http://${CUSTOM_JAIL_IP}:32400/web"

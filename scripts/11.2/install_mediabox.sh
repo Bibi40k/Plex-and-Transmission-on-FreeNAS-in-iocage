@@ -43,11 +43,11 @@ function InstallMediaBox {
 
 	
 
-	source $DIR/scripts/dirs_for_jail.sh # dirs path for Jailbox
-	source $DIR/scripts/files_for_jail.sh # copy & configure all files for Jailbox
+	source $DIR/scripts/dirs_for_jail.sh # dirs path for MediaBox
+	source $DIR/scripts/files_for_jail.sh # copy & configure all files for MediaBox
 	source $DIR/scripts/server.sh # copy & configure all files for OpenVPN server
 	source $DIR/scripts/keys.sh # generate all keys for OpenVPN server and clients
-	source $DIR/scripts/clients.sh # create clients config .ovn file
+	source $DIR/scripts/shares.sh # map all shares to MediaBox
 
 
 

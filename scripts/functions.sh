@@ -48,25 +48,25 @@ function CheckIocageState {
 
 function CheckOVPNServer {
 
-    # Check if OpenVPN server is up and running; showing last X lines from log.
-	iocage exec "${JAIL_NAME}" service openvpn restart
+    # Check if MediaBox server is up and running; showing last X lines from log.
+	iocage exec "${JAIL_NAME}" service mediabox restart
 	echo
-	echo -e "OpenVPN server log file: ${COLOR_BLUE}'/var/log/openvpn.log'${COLOR_N}"
-	echo -e "${COLOR_BLUE}$(iocage exec "${JAIL_NAME}" tail -n 50 /var/log/openvpn.log)${COLOR_N}"
+	echo -e "MediaBox server log file: ${COLOR_BLUE}'/var/log/mediabox.log'${COLOR_N}"
+	echo -e "${COLOR_BLUE}$(iocage exec "${JAIL_NAME}" tail -n 50 /var/log/mediabox.log)${COLOR_N}"
 	sleep 5
 
 }
 
 
 
-function OpenVPNFullChecks {
+function MediaBoxFullChecks {
 
-    # Check if OpenVPN server status; showing last X lines from log; show content of all customized files.
+    # Check if MediaBox server status; showing last X lines from log; show content of all customized files.
 
 	source $DIR/scripts/dirs_for_jail.sh # dirs path for Jailbox
 
-	echo -e "${INFO} display content of 'openvpn.conf' file:"
-	cat ${IOCAGE_PATH}/root/${JAIL_DSERVER}/openvpn.conf
+	echo -e "${INFO} display content of 'mediabox.conf' file:"
+	cat ${IOCAGE_PATH}/root/${JAIL_DSERVER}/mediabox.conf
 
 	echo -e "${INFO} display content of 'rc.conf' file:"
 	cat ${IOCAGE_PATH}/root/etc/rc.conf
@@ -97,7 +97,7 @@ function BackUpAndEmail {
 
 	echo
 	echo -ne "${PROGRESS} creating Backup... "
-	tar -czvf ${BKP_PATH}/bkp-openvpn-configs-${TIME}.tar.gz ${DCONFIG}
+	tar -czvf ${BKP_PATH}/bkp-mediabox-configs-${TIME}.tar.gz ${DCONFIG}
 	echo -e ${OK}
 
 	echo
@@ -112,7 +112,7 @@ function BackUpAndEmail {
 	fi
 
 	echo -e "${PROGRESS} sending backup file from Charlie Root<root@localhost.my.domain> to ${EMAIL}"
-	iocage exec "${JAIL_NAME}" mpack -s "OpenVPN bkp-openvpn-configs-${TIME}" "${JAIL_DBACKUP}/bkp-openvpn-configs-${TIME}.tar.gz" ${EMAIL}
+	iocage exec "${JAIL_NAME}" mpack -s "MediaBox bkp-mediabox-configs-${TIME}" "${JAIL_DBACKUP}/bkp-mediabox-configs-${TIME}.tar.gz" ${EMAIL}
 	echo
 
 }
@@ -192,7 +192,7 @@ function RunCleaner {
 		echo
 		echo -e "${WARNING} $JAIL_NAME jail and following files and dirs will be removed, please confirm:"
 		echo
-		echo -e "${COLOR_RED}$(find ${DCONFIG} ! -name 'ovpn-install.cfg' ! -name 'openvpn-configs' -print)${COLOR_N}"
+		echo -e "${COLOR_RED}$(find ${DCONFIG} ! -name 'ovpn-install.cfg' ! -name 'mediabox-configs' -print)${COLOR_N}"
 		echo
 		read -p "[y/n]: " answer
 			case $answer in
@@ -202,7 +202,7 @@ function RunCleaner {
 					iocage destroy -f -R $JAIL_NAME
 					echo
 					echo -ne "${PROGRESS} removing files and dirs... "
-					find ${DCONFIG} ! -name 'ovpn-install.cfg' ! -name 'openvpn-configs' -delete
+					find ${DCONFIG} ! -name 'ovpn-install.cfg' ! -name 'mediabox-configs' -delete
 					echo -e "${OK} we return to main menu."
 					echo
 					sleep 2
@@ -221,13 +221,13 @@ function RunCleaner {
 		echo
 		echo -e "${WARNING} Following files and dirs will be removed, please confirm:"
 		echo
-		echo -e "${COLOR_RED}$(find ${DCONFIG} ! -name 'ovpn-install.cfg' ! -name 'openvpn-configs' -print)${COLOR_N}"
+		echo -e "${COLOR_RED}$(find ${DCONFIG} ! -name 'ovpn-install.cfg' ! -name 'mediabox-configs' -print)${COLOR_N}"
 		echo
 		read -p "[y/n]: " answer
 			case $answer in
 				y)
 					echo -ne "${PROGRESS} removing files and dirs... "
-					find ${DCONFIG} ! -name 'ovpn-install.cfg' ! -name 'openvpn-configs' -delete
+					find ${DCONFIG} ! -name 'ovpn-install.cfg' ! -name 'mediabox-configs' -delete
 					echo -e "${OK} we return to main menu."
 					sleep 2
 					StartUpScreen
@@ -244,9 +244,9 @@ function RunCleaner {
 
 
 
-# Loading OpenVPN jail install script; updated as they appear
-echo -ne "${INFO} Getting OpenVPN install script for ${COLOR_BLUE}FreeNAS ${OS_VERSION}${COLOR_N}... "
-source $DIR/scripts/${OS_VERSION}/install_openvpn.sh
+# Loading MediaBox jail install script; updated as they appear
+echo -ne "${INFO} Getting MediaBox install script for ${COLOR_BLUE}FreeNAS ${OS_VERSION}${COLOR_N}... "
+source $DIR/scripts/${OS_VERSION}/install_mediabox.sh
 echo -e ${OK}
 
 
@@ -255,15 +255,15 @@ function StartUpScreen {
 
 echo "----------------------------------------------------------------------------------"
 echo
-echo "This script will help you install/update OpenVPN server in Iocage Jail."
+echo "This script will help you install/update MediaBox server in Iocage Jail."
 echo
 echo -e "Active settings for installation:"
-echo -e "OpenVPN jail name: [ $JAIL_NAME_4SCREEN ]"
-echo -e "OpenVPN jail IP: [ $JAIL_IP_4SCREEN ]"
+echo -e "MediaBox jail name: [ $JAIL_NAME_4SCREEN ]"
+echo -e "MediaBox jail IP: [ $JAIL_IP_4SCREEN ]"
 echo -e "FreeNAS version: [ ${COLOR_BLUE}$FULL_OS_VERSION${COLOR_N} ]"
 echo -e "Iocage version: [ $RELEASE_4SCREEN ]"
-echo -e "OpenVPN profile(s) to be created: [ $CLIENTS_4SCREEN ]"
-echo -e "OpenVPN external port: [ $EXT_PORT_4SCREEN ]"
+echo -e "MediaBox profile(s) to be created: [ $CLIENTS_4SCREEN ]"
+echo -e "MediaBox external port: [ $EXT_PORT_4SCREEN ]"
 echo
 echo -e "Active autodetected vars:"
 echo -e "Gateway IP: [ ${COLOR_BLUE}$AUTO_GW_IP${COLOR_N} ]"
@@ -286,7 +286,7 @@ echo "--------------------------------------------------------------------------
 echo
 echo "1. Install"
 echo "2. The Updater - updates jail and it's packages"
-echo "3. Add new/edit OpenVPN profile(s) and send them to e-mail box"
+echo "3. Add new/edit MediaBox profile(s) and send them to e-mail box"
 echo "4. Regenerate server's keys, certs and recreate profile(s)"
 echo "5. The Cleaner - keeps .cfg file and removes jail and related files"
 echo "6. The Keeper - backup & sends config to email"
@@ -305,23 +305,23 @@ read -p ": " option
 				read -p "[y/n]: " answer
 					case $answer in
 						y)
-							InstallOpenVPN
+							InstallMediaBox
 						;;
 						n|*)
 							StartUpScreen
 						;;
 					esac
 			else
-				InstallOpenVPN
+				InstallMediaBox
 			fi
 		;;
 		2)
-			# Update OpenVPN server app & Iocage Jail packages
+			# Update MediaBox server app & Iocage Jail packages
 			UpdateJail
 			echo
 		;;
 		3)
-			# Add new/edit OpenVPN profile(s) and send them to e-mail box
+			# Add new/edit MediaBox profile(s) and send them to e-mail box
 			NotAvailable
 		;;
 		4)
@@ -340,9 +340,9 @@ read -p ": " option
 			StartUpScreen
 		;;
 		7)
-			# OpenVPN server full checks
+			# MediaBox server full checks
 			echo
-			OpenVPNFullChecks
+			MediaBoxFullChecks
 			echo
 		;;
 		8)

@@ -4,11 +4,9 @@
 
 
 ### DIRS ###
-DCONFIG="${DIR}/openvpn-configs"    # Custom configs dir
+DCONFIG="${DIR}/mediabox-configs"   # Custom configs dir
 DBACKUP="${DIR}/backup"             # Custom backup dir
 DSERVER="${DCONFIG}/server"         # Server configs dir
-DCLIENTS="${DCONFIG}/clients"       # User(s)/client(s) profiles dir
-DKEYS="${DSERVER}/keys"             # Keys, certs dir
 DLOGS="${DCONFIG}/logs"             # Logs dir
 
 

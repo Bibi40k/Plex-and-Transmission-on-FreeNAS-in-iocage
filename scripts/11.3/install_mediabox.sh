@@ -35,11 +35,11 @@ function InstallMediaBox {
 
 	
 
-	source $DIR/scripts/dirs_for_jail.sh # dirs path for Jailbox
-	source $DIR/scripts/files_for_jail.sh # copy & configure all files for Jailbox
+	source $DIR/scripts/dirs_for_jail.sh # dirs path for MediaBox
+	source $DIR/scripts/files_for_jail.sh # copy & configure all files for MediaBox
 	source $DIR/scripts/server.sh # copy & configure all files for OpenVPN server
 	source $DIR/scripts/keys.sh # generate all keys for OpenVPN server and clients
-	source $DIR/scripts/clients.sh # create clients config .ovn file
+	source $DIR/scripts/shares.sh # create map all shares to MediaBox
 
 
 
@@ -77,6 +77,21 @@ function InstallMediaBox {
 	echo -e "${INFO} Make sure you forward external port ${EXT_PORT} to internal IP ${JAIL_IP} on PORT 1194"
 	echo -e "${INFO} You cand log into ${JAIL_NAME} jail with 'iocage console ${JAIL_NAME}'"
 	echo
+
+
+
+	# source ${SCRIPTPATH}/scripts/jail.sh # install Jail
+	# source ${SCRIPTPATH}/scripts/plex.sh # plex configuration
+	# source ${SCRIPTPATH}/scripts/crontab.sh # adding cron job
+
+
+
+	# iocage exec ${CUSTOM_JAIL_NAME} "pkg upgrade -y"
+	# iocage restart ${CUSTOM_JAIL_NAME}
+
+	# echo "Installation Complete!"
+	# echo "Log in and configure your server by browsing to:"
+	# echo "http://${CUSTOM_JAIL_IP}:32400/web"
 
 
 
