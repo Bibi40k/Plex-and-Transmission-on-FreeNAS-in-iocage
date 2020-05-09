@@ -262,7 +262,7 @@ echo -e "MediaBox jail name: [ $JAIL_NAME_4SCREEN ]"
 echo -e "MediaBox jail IP: [ $JAIL_IP_4SCREEN ]"
 echo -e "FreeNAS version: [ ${COLOR_BLUE}$FULL_OS_VERSION${COLOR_N} ]"
 echo -e "Iocage version: [ $RELEASE_4SCREEN ]"
-echo -e "MediaBox profile(s) to be created: [ $CLIENTS_4SCREEN ]"
+echo -e "MediaBox share to be mapped: [ $SHARES_4SCREEN ]"
 echo -e "MediaBox external port: [ $EXT_PORT_4SCREEN ]"
 echo
 echo -e "Active autodetected vars:"
