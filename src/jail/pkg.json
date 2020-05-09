@@ -1,3 +1,3 @@
 {
-  "pkgs": ["nano", "wget", "plexmediaserver", "transmission"]
+  "pkgs": ["nano", "wget", "mpack", "transmission", "plexmediaserver"]
 }
