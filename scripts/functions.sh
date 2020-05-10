@@ -268,7 +268,7 @@ echo -e "Gateway IP: [ ${COLOR_BLUE}$AUTO_GW_IP${COLOR_N} ]"
 echo -e "External IP: [ ${COLOR_BLUE}$AUTO_EXT_IP${COLOR_N} ]"
 echo
 echo -e "Shares and dirs:"
-echo -e "MediaBox share to be mapped: [ $(printf '\"%s\"\n' "${SHARES[@]}") ]"
+echo -e "MediaBox share to be mapped: [ $(printf '%s\n              ' "${SHARES[@]}") ]"
 echo
 echo -e "Config dir: [ ${COLOR_BLUE}$DCONFIG${COLOR_N} ]"
 echo -e "BackUp dir: [ ${COLOR_BLUE}$BKP_PATH_4SCREEN${COLOR_N} ]"
