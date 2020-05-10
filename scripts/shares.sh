@@ -4,9 +4,9 @@
 
 
 # Add all elements to SHARES
-SHARES+=(${MEDIA_DOWNLOAD_PATH})
-SHARES+=(${MEDIA_BKP_PATH}/plexdata)
-SHARES+=(${MEDIA_BKP_PATH}/transmission-config)
+SHARES+=("${MEDIA_DOWNLOAD_PATH}")
+SHARES+=("${MEDIA_BKP_PATH}/plexdata")
+SHARES+=("${MEDIA_BKP_PATH}/transmission-config")
 
 function MapShares {
     echo
@@ -18,6 +18,6 @@ function MapShares {
             echo -e "${FAIL}"
         fi
     done
-    
+
 }
 
