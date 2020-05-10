@@ -3,10 +3,6 @@
 
 
 
-# FVARS="${DBKP}/jail.vars"
-
-
-
 ### FILES ###
 FVARS="${DCONFIG}/mediabox-install.cfg" # My custom vars file
 FLOG="${DCONFIG}/mediabox-install.log" # Log file

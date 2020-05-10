@@ -45,6 +45,7 @@ source $DIR/scripts/${OS_VERSION}/fixes.sh
 
 CheckOS # check if script is compatible with this FreeNAS version
 
+source $DIR/scripts/shares.sh # get all shares
 source $DIR/scripts/defaults.sh # default vars & constants
 source $DIR/scripts/functions.sh # functions
 
