@@ -341,6 +341,7 @@ read -p ": " option
 			# Edit settings
 			nano ${FVARS}
 			source ${FVARS} # reload after edit
+			source $DIR/scripts/shares.sh # reload after edit
 			source $DIR/scripts/defaults.sh # reload after edit
 			StartUpScreen
 		;;
