@@ -4,17 +4,10 @@
 
 
 # Add all elements to SHARES
-printf '\"%s\" ' "${SHARES[@]}"
-echo
 SHARES+=("${MEDIA_DOWNLOAD_PATH}")
-printf '\"%s\" ' "${SHARES[@]}"
-echo
 SHARES+=("${MEDIA_BKP_PATH}/plexdata")
-printf '\"%s\" ' "${SHARES[@]}"
-echo
 SHARES+=("${MEDIA_BKP_PATH}/transmission-config")
-printf '\"%s\" ' "${SHARES[@]}"
-echo
+# printf '\"%s\" ' "${SHARES[@]}"
 
 function MapShares {
     echo
