@@ -15,7 +15,6 @@ echo
 SHARES+=("${MEDIA_BKP_PATH}/transmission-config")
 $(printf "\"%s\" " "${SHARES[@]}")
 echo
-exit
 
 function MapShares {
     echo
