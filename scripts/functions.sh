@@ -255,11 +255,12 @@ function StartUpScreen {
 
 echo "----------------------------------------------------------------------------------"
 echo
-echo "This script will help you install/update MediaBox server in Iocage Jail."
+echo "${INFO} This script will help you install/update MediaBox server in Iocage Jail."
+echo "${INFO} ${COLOR_GREEN}GREEN${COLOR_N} means you set that value and ${COLOR_BLUE}BLUE${COLOR_N} means is defaut."
 echo
 echo -e "Active settings for installation:"
-echo -e "MediaBox jail name: [ $JAIL_NAME_4SCREEN ]"
-echo -e "MediaBox jail IP: [ $JAIL_IP_4SCREEN ]"
+echo -e "Jail name: [ $JAIL_NAME_4SCREEN ]"
+echo -e "Jail IP: [ $JAIL_IP_4SCREEN ]"
 echo -e "FreeNAS version: [ ${COLOR_BLUE}$FULL_OS_VERSION${COLOR_N} ]"
 echo -e "Iocage version: [ $RELEASE_4SCREEN ]"
 echo
