@@ -258,17 +258,14 @@ echo
 echo -e "${INFO} This script will help you install/update MediaBox server in Iocage Jail."
 echo -e "${INFO} ${COLOR_GREEN}GREEN${COLOR_N} means you set that value and ${COLOR_BLUE}BLUE${COLOR_N} means is defaut."
 echo
-echo -e "Active settings for installation:"
 echo -e "Jail name: [ $JAIL_NAME_4SCREEN ]"
 echo -e "Jail IP: [ $JAIL_IP_4SCREEN ]"
 echo -e "FreeNAS version: [ ${COLOR_BLUE}$FULL_OS_VERSION${COLOR_N} ]"
 echo -e "Iocage version: [ $RELEASE_4SCREEN ]"
 echo
-echo -e "Active autodetected vars:"
 echo -e "Gateway IP: [ ${COLOR_BLUE}$AUTO_GW_IP${COLOR_N} ]"
 echo -e "External IP: [ ${COLOR_BLUE}$AUTO_EXT_IP${COLOR_N} ]"
 echo
-echo -e "Shares and dirs:"
 echo -e "MediaBox mapped shares: [ \n			$(printf '%s\n			' "${SHARES_4SCREEN[@]}")]"
 echo -e "Config dir: [ ${COLOR_BLUE}$DCONFIG${COLOR_N} ]"
 echo -e "BackUp dir: [ $BKP_PATH_4SCREEN ]"
