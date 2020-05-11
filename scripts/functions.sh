@@ -255,8 +255,8 @@ function StartUpScreen {
 
 echo "----------------------------------------------------------------------------------"
 echo
-echo "${INFO} This script will help you install/update MediaBox server in Iocage Jail."
-echo "${INFO} ${COLOR_GREEN}GREEN${COLOR_N} means you set that value and ${COLOR_BLUE}BLUE${COLOR_N} means is defaut."
+echo -e "${INFO} This script will help you install/update MediaBox server in Iocage Jail."
+echo -e "${INFO} ${COLOR_GREEN}GREEN${COLOR_N} means you set that value and ${COLOR_BLUE}BLUE${COLOR_N} means is defaut."
 echo
 echo -e "Active settings for installation:"
 echo -e "Jail name: [ $JAIL_NAME_4SCREEN ]"
