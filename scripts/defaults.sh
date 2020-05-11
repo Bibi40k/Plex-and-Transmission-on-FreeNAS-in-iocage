@@ -6,7 +6,12 @@
 JAIL_NAME_4SCREEN=${COLOR_GREEN}${JAIL_NAME:-${COLOR_BLUE}"MediaBox"}${COLOR_N}
 JAIL_NAME=${JAIL_NAME:-"MediaBox"}
 INTERFACE=${INTERFACE:-"vnet0"}
-JAIL_IP_4SCREEN=$(awk -F"." '{print $1"."$2"."$3".'${JAIL_IP:-$SUGGESTED_LAST_OCTET_OF_IP}'"}'<<<${AUTO_GW_IP})
+if [ ! -z "$JAIL_IP" ]
+then
+    JAIL_IP_4SCREEN=${COLOR_GREEN}$(awk -F"." '{print $1"."$2"."$3".'${JAIL_IP:-$SUGGESTED_LAST_OCTET_OF_IP}'"}'<<<${AUTO_GW_IP})${COLOR_N}
+else
+    JAIL_IP_4SCREEN=${COLOR_BLUE}$(awk -F"." '{print $1"."$2"."$3".'${JAIL_IP:-$SUGGESTED_LAST_OCTET_OF_IP}'"}'<<<${AUTO_GW_IP})${COLOR_N}
+fi
 JAIL_IP=$(awk -F"." '{print $1"."$2"."$3".'${JAIL_IP:-$SUGGESTED_LAST_OCTET_OF_IP}'"}'<<<${AUTO_GW_IP})
 SHARES_4SCREEN=( ${COLOR_GREEN}"${SHARES[@]:-${COLOR_BLUE}"no-share-defined"}"${COLOR_N} )
 SHARES=( "${SHARES[@]:-"no-share-defined"}" )
