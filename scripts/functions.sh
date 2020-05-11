@@ -270,7 +270,8 @@ echo
 echo -e "Shares and dirs:"
 echo -e "MediaBox mapped shares: [ \n			$(printf '\"%s\"\n			' "${SHARES_4SCREEN[@]}")]"
 echo -e "Config dir: [ ${COLOR_BLUE}$DCONFIG${COLOR_N} ]"
-echo -e "BackUp dir: [ ${COLOR_BLUE}$BKP_PATH_4SCREEN${COLOR_N} ]"
+echo -e "BackUp dir: [ $BKP_PATH_4SCREEN ]"
+echo
 echo -e "Last BackUp: [ $BKP_FILE_4SCREEN ]"
 echo
 echo "----------------------------------------------------------------------------------"
