@@ -7,7 +7,7 @@
 SHARES+=("${MEDIA_DOWNLOAD_PATH}")
 SHARES+=("${MEDIA_BKP_PATH}/plexdata")
 SHARES+=("${MEDIA_BKP_PATH}/transmission-config")
-printf '\"%s\"\n' "${SHARES[@]}"
+echo '\"%s\"\n' "${SHARES[@]}"
 
 function MapShares {
     echo
