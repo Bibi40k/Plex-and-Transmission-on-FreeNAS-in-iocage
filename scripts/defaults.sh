@@ -9,7 +9,9 @@ INTERFACE=${INTERFACE:-"vnet0"}
 JAIL_IP_4SCREEN=$(awk -F"." '{print $1"."$2"."$3".'${JAIL_IP:-$SUGGESTED_LAST_OCTET_OF_IP}'"}'<<<${AUTO_GW_IP})
 JAIL_IP=$(awk -F"." '{print $1"."$2"."$3".'${JAIL_IP:-$SUGGESTED_LAST_OCTET_OF_IP}'"}'<<<${AUTO_GW_IP})
 SHARES_4SCREEN=(${COLOR_GREEN}${SHARES:-${COLOR_BLUE}"no-share-defined"}${COLOR_N})
-SHARES=(${SHARES:-"no-share-defined"})
+printf '\"%s\"\n' "${SHARES[@]}"
+SHARES=${SHARES:-"no-share-defined"}
+printf '\"%s\"\n' "${SHARES[@]}"
 BKP_PATH_4SCREEN=${BKP_PATH:-${COLOR_BLUE}$DBACKUP}${COLOR_N}
 BKP_PATH=${BKP_PATH:-$DBACKUP}
 FIND_BKP_FILE=$(ls -dt ${BKP_PATH}/bkp* | head -1 | xargs -n 1 basename 1>/dev/null)
