@@ -248,6 +248,7 @@ function RunCleaner {
 echo -ne "${INFO} Loading 'install_mediabox.sh' for ${COLOR_BLUE}FreeNAS ${OS_VERSION}${COLOR_N}... "
 source $DIR/scripts/${OS_VERSION}/install_mediabox.sh
 echo -e ${OK}
+echo
 
 
 
