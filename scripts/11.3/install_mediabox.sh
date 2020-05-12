@@ -37,17 +37,18 @@ function InstallMediaBox {
 
 	source $DIR/scripts/dirs_for_jail.sh # dirs path for MediaBox
 	source $DIR/scripts/files_for_jail.sh # copy & configure all files for MediaBox
-	source $DIR/scripts/server.sh # copy & configure all files for OpenVPN server
+	source $DIR/scripts/plex.sh # copy & configure all files for Plex server
+	source $DIR/scripts/transmission.sh # copy & configure all files for Plex server
 
 	MapShares  # create map all shares to MediaBox
 
 
 
-	# Remove old 'openvpn-configs' dir and copy the new one in jail
+	# Remove old 'mediabox-configs' dir and copy the new one in jail
 	echo
 	echo -ne "${PROGRESS} copy conf dir to jail... "
-	rm -rf "${IOCAGE_PATH}/root/root/openvpn-configs"
-	if \cp -r "${DCONFIG}" "${IOCAGE_PATH}/root/root/openvpn-configs"; then
+	rm -rf "${IOCAGE_PATH}/root/root/mediabox-configs"
+	if \cp -r "${DCONFIG}" "${IOCAGE_PATH}/root/root/mediabox-configs"; then
     	echo -e "${OK}"
 	else
 		echo -e "${FAIL}"
@@ -74,7 +75,9 @@ function InstallMediaBox {
 	echo
 	echo -e "${COLOR_GREEN}Installation Complete!${COLOR_N}"
 	echo
-	echo -e "${INFO} Make sure you forward external port ${EXT_PORT} to internal IP ${JAIL_IP} on PORT 1194"
+	echo -e "${INFO} Plex address https://${JAIL_IP}:32400/web"
+	echo -e "${INFO} Transmission address https://${JAIL_IP}:32400/web"
+	echo
 	echo -e "${INFO} You cand log into ${JAIL_NAME} jail with 'iocage console ${JAIL_NAME}'"
 	echo
 

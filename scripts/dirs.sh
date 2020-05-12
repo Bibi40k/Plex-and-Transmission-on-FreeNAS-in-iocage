@@ -23,7 +23,7 @@
 ### DIRS ###
 DCONFIG="${DIR}/mediabox-configs"   # Custom configs dir
 DBACKUP="${DIR}/backup"             # Custom backup dir
-DSERVER="${DCONFIG}/server"         # Server configs dir
+DAPPS="${DCONFIG}/apps"             # Apps configs dir
 DLOGS="${DCONFIG}/logs"             # Logs dir
 
 
@@ -31,11 +31,11 @@ DLOGS="${DCONFIG}/logs"             # Logs dir
 function CheckConfigDirs {
    
     # Create config dir(s) if doesn't exist(s) already
-    # We check for the '/server/originals' because we always keep customizations
+    # We check for the '/apps/originals' because we always keep customizations
     echo -ne "${PROGRESS} checking config dirs... "
-    if [[ ! -d "${DCONFIG}/server/originals" ]] ; then
+    if [[ ! -d "${DCONFIG}/apps/plex/originals" ]] ; then
         echo -e "${WARNING} no config dirs found"
-        DIRS=(${DCONFIG}/{server/{keys,originals},clients/originals,logs/originals})
+        DIRS=(${DCONFIG}/{apps/{plex/originals,transmission/originals},logs/originals})
         
         echo -ne "${PROGRESS} creating config dirs to ${DCONFIG}... "
         if mkdir -p -- "${DIRS[@]}"; then

@@ -9,6 +9,6 @@ IOCAGE_PATH=$(zfs list -o name,mountpoint | grep -m1 iocage/jails/${JAIL_NAME} |
 
 JAIL_DCONFIG="/root/mediabox-configs" # Custom configs dir inside jail
 JAIL_DBACKUP="/root/backup" # Custom backup dir inside jail
-JAIL_DSERVER="${JAIL_DCONFIG}/server" # Server configs dir inside jail
+JAIL_DAPPS="${JAIL_DCONFIG}/apps" # Server configs dir inside jail
 JAIL_DLOGS="${JAIL_DCONFIG}/logs" # Logs dir inside jail
 
