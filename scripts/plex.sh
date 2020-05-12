@@ -1,29 +1,35 @@
 #!/bin/bash
+# Plex configuration
 
 
-iocage exec ${CUSTOM_JAIL_NAME} "mkdir -p /mnt/plexdata"
-iocage exec ${CUSTOM_JAIL_NAME} "chown -R media:ftp /mnt/plexdata"
-iocage fstab -a ${CUSTOM_JAIL_NAME} '"${DPLEXDATA}" /mnt/plexdata nullfs rw 0 0'
+
+echo -e "${INFO} Starting Plex configuration..."
+  iocage exec ${JAIL_NAME} "mkdir -p /mnt/plexdata"
+  iocage exec ${JAIL_NAME} "chown -R media:ftp /mnt/plexdata"
+  iocage fstab -a ${JAIL_NAME} '"${DPLEXDATA}" /mnt/plexdata nullfs rw 0 0'
 
 
-if [ $CUSTOM_USE_PLEXPASS == "yes" ]; then
-  echo ""
-  iocage exec ${CUSTOM_JAIL_NAME} "sysrc plexmediaserver_plexpass_enable='YES'"
-  iocage exec ${CUSTOM_JAIL_NAME} "sysrc plexmediaserver_plexpass_support_path='/mnt/plexdata'"
-  iocage exec ${CUSTOM_JAIL_NAME} "sysrc plexmediaserver_plexpass_user='media'"
-  iocage exec ${CUSTOM_JAIL_NAME} "sysrc plexmediaserver_plexpass_group='ftp'"
+
+if [ ${PLEXPASS} == "YES" ]; then
+  echo
+    iocage exec ${JAIL_NAME} "sysrc plexmediaserver_plexpass_enable='YES'"
+    iocage exec ${JAIL_NAME} "sysrc plexmediaserver_plexpass_support_path='/mnt/plexdata'"
+    iocage exec ${JAIL_NAME} "sysrc plexmediaserver_plexpass_user='media'"
+    iocage exec ${JAIL_NAME} "sysrc plexmediaserver_plexpass_group='ftp'"
 else
-  echo ""
-  iocage exec ${CUSTOM_JAIL_NAME} "sysrc plexmediaserver_enable='YES'"
-  iocage exec ${CUSTOM_JAIL_NAME} "sysrc plexmediaserver_support_path='/mnt/plexdata'"
-  iocage exec ${CUSTOM_JAIL_NAME} "sysrc plexmediaserver_user='media'"
-  iocage exec ${CUSTOM_JAIL_NAME} "sysrc plexmediaserver_group='ftp'"
+  echo
+    iocage exec ${JAIL_NAME} "sysrc plexmediaserver_enable='YES'"
+    iocage exec ${JAIL_NAME} "sysrc plexmediaserver_support_path='/mnt/plexdata'"
+    iocage exec ${JAIL_NAME} "sysrc plexmediaserver_user='media'"
+    iocage exec ${JAIL_NAME} "sysrc plexmediaserver_group='ftp'"
 fi
 
 
-echo ""
+
+echo
 IN_DPLUGINS="/mnt/plexdata/Plex Media Server/Plug-ins" # accessible from inside Jail
 OUT_DPLUGINS="${DPLEXDATA}/Plex Media Server/Plug-ins" # accessible from FreeNAS (outside Jail)
+
 if [ ! -d "${OUT_DPLUGINS}"/WebTools.bundle ]; then
   # Install WebTools.bundle
   WebTools_link="https://github.com/ukdtom/WebTools.bundle/releases/download/3.0.0/WebTools.bundle.zip"
