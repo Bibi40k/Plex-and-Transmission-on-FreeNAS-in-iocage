@@ -133,6 +133,7 @@ function UpdateJail {
 		iocage exec "${JAIL_NAME}" pkg update
 		echo -e "${OK}"
 	else
+		echo
 		echo -e "${WARNING} ${JAIL_NAME} jail does not exist."
 	fi
 
@@ -309,6 +310,7 @@ read -p ": " option
 		2)
 			# Update MediaBox server app & Iocage Jail packages
 			UpdateJail
+			echo
 			echo -e "${INFO} We return to menu in a sec."
 			echo
 			sleep 2
