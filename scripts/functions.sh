@@ -151,7 +151,7 @@ function RestartJail {
 		echo
 		iocage restart "${JAIL_NAME}"
 	else
-		echo -e "${INFO} ${JAIL_NAME} jail does not exist."
+		echo -e "${WARNING} ${JAIL_NAME} jail does not exist so there's nothing to restart."
 	fi
 
 }
@@ -309,7 +309,7 @@ read -p ": " option
 		2)
 			# Update MediaBox server app & Iocage Jail packages
 			UpdateJail
-			echo
+			StartUpScreen
 		;;
 		3)
 			# Add new/edit MediaBox profile(s) and send them to e-mail box
