@@ -133,7 +133,7 @@ function UpdateJail {
 		iocage exec "${JAIL_NAME}" pkg update
 		echo -e "${OK}"
 	else
-		echo -e "${INFO} ${JAIL_NAME} jail does not exist."
+		echo -e "${WARNING} ${JAIL_NAME} jail does not exist so there's nothing to update."
 	fi
 
 }
