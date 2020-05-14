@@ -3,6 +3,7 @@
 
 
 
+echo
 echo -e "${INFO} Starting Plex configuration..."
   iocage exec ${JAIL_NAME} "mkdir -p /mnt/plexdata"
   iocage exec ${JAIL_NAME} "chown -R media:ftp /mnt/plexdata"

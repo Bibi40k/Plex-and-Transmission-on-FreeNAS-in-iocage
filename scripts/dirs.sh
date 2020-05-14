@@ -14,7 +14,6 @@
 # DPLEXDATA="${DBKP}/plexdata"
 # DTRANSMISSION="${DBKP}/transmission-config"
 # DDOWNLOAD="/mnt/${POOL_NAME}/FTP"
-# DLOGS="${DCONFIG}/logs"
 
 
 

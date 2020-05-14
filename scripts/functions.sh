@@ -192,7 +192,7 @@ function RunCleaner {
 		echo
 		echo -e "${WARNING} $JAIL_NAME jail and following files and dirs will be removed, please confirm:"
 		echo
-		echo -e "${COLOR_RED}$(find ${DCONFIG} ! -name 'ovpn-install.cfg' ! -name 'mediabox-configs' -print)${COLOR_N}"
+		echo -e "${COLOR_RED}$(find ${DCONFIG} ! -name 'mediabox-install.cfg' ! -name 'mediabox-configs' -print)${COLOR_N}"
 		echo
 		read -p "[y/n]: " answer
 			case $answer in
@@ -202,7 +202,7 @@ function RunCleaner {
 					iocage destroy -f -R $JAIL_NAME
 					echo
 					echo -ne "${PROGRESS} removing files and dirs... "
-					find ${DCONFIG} ! -name 'ovpn-install.cfg' ! -name 'mediabox-configs' -delete
+					find ${DCONFIG} ! -name 'mediabox-install.cfg' ! -name 'mediabox-configs' -delete
 					echo -e "${OK} we return to main menu."
 					echo
 					sleep 2
