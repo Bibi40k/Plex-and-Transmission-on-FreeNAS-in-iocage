@@ -37,6 +37,7 @@ function InstallMediaBox {
 
 	source $DIR/scripts/dirs_for_jail.sh # dirs path for MediaBox
 	source $DIR/scripts/files_for_jail.sh # copy & configure all files for MediaBox
+	source $DIR/scripts/media_user.sh # create media user and add it to ftp group
 	source $DIR/scripts/plex.sh # copy & configure all files for Plex server
 	source $DIR/scripts/transmission.sh # copy & configure all files for Plex server
 
